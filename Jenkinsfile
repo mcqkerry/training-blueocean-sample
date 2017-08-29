@@ -9,16 +9,8 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        parallel(
-          "Build": {
-            sh './jenkins/build.sh'
-            
-          },
-          "Archive the Artifacts": {
-            sh 'target/*.war'
-            
-          }
-        )
+        sh './jenkins/build.sh'
+        archiveArtifacts ' target/*.war'
       }
     }
     stage('Test') {
